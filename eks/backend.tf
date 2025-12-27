@@ -1,18 +1,17 @@
 terraform {
   required_version = ">= 1.9.3, <= 1.14.3"
+
   required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 5.49.0"
     }
   }
-}
-    }
-  }
+
   backend "s3" {
     bucket         = "khatija-terraform-state-bucket"
-    region         = "ap-south-1"
     key            = "eks/terraform.tfstate"
+    region         = "ap-south-1"
     dynamodb_table = "Lock-Files"
     encrypt        = true
   }
